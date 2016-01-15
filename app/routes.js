@@ -21,6 +21,17 @@ module.exports = function(app) {
     });
   });
 
+  //api route to get ip address
+  var publicIp = require('public-ip');
+  app.get('/api/my_ip', function(request, response){
+    var my_ip = publicIp.v4(function(error, ip_address){
+      if (error)
+        response.send(error);
+      ip_address;
+    });
+    console.log(my_ip);
+  });
+
   // route to handle create goes here (app.post)
 
   // route to handle delete goes here (app.delete)
