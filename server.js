@@ -1,4 +1,4 @@
-// server.js >> typed out by hand from https://scotch.io/tutorials/setting-up-a-mean-stack-single-page-application
+//server.js
 
 // modules =================================================
 var express        = require('express');
@@ -15,9 +15,11 @@ var db = require('./config/db');
 var port = process.env.PORT || 8080;
 
 // connect to our mongoDB database
+// (uncomment after you enter in your own credentials in config/db.js)
+var mongoose = require('mongoose');
 mongoose.connect(db.url);
 
-// get all data of the body (POST) parameters
+// get all data/stuff of the body (POST) parameters
 // parse application/json
 app.use(bodyParser.json());
 
@@ -45,4 +47,3 @@ console.log('Magic happens on port ' + port);
 
 // expose app
 exports = module.exports = app;
-
