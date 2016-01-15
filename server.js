@@ -8,6 +8,18 @@ var methodOverride = require('method-override');
 var ip             = require('ip');
 var request        = require('request');
 
+// // jade compiler ==================================================
+var jade = require('jade');
+
+var publicIp = require('public-ip');
+var my_ip = publicIp.v4(function(error, ip_address){
+  if (error)
+    response.send(error);
+  ip_address;
+});
+var options = { locals: { data : {ip_address : my_ip}; }
+var fn = jade.compileFile('./public/views/index.jade', options);
+var html = fn(locals);
 
 // configuration ===========================================
 
@@ -50,3 +62,4 @@ console.log('Magic happens on port ' + port);
 
 // expose app
 exports = module.exports = app;
+

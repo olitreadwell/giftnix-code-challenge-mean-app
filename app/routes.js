@@ -22,13 +22,8 @@ module.exports = function(app) {
   });
 
   //api route to get ip address
-  var publicIp = require('public-ip');
   app.get('/api/my_ip', function(request, response){
-    var my_ip = publicIp.v4(function(error, ip_address){
-      if (error)
-        response.send(error);
-      ip_address;
-    });
+
     console.log(my_ip);
   });
 
@@ -42,8 +37,14 @@ module.exports = function(app) {
     response.sendfile('./public/views/index.html'); // load our public/index.html file
   });
 
+  var publicIp = require('public-ip');
   app.get('/get_ip', function(request, response) {
-    response.sendfile('./public/views/index.html'); // load our public/index.html file
+    var my_ip = publicIp.v4(function(error, ip_address){
+      if (error)
+        response.send(error);
+      ip_address;
+    });
+    response.sendfile('./public/views/index.jade', { locals: { data : my_ip}}); 
   });
 
 };
