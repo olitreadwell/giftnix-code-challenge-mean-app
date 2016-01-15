@@ -41,6 +41,8 @@ module.exports = function(app) {
   app.get('/', function(request, response) {
     response.sendfile('./public/views/index.html'); // load our public/index.html file
   });
+
+  app.get('/get_ip', function(request, response) {
     response.sendfile('./public/views/index.html'); // load our public/index.html file
   });
 
